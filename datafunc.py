@@ -23,6 +23,28 @@ def takeout(object, id, pid, filename):
             csv_data.writerow([id,pid,str(datenow)])
         print(f"\n{object.data_person[pid].name} has taken out the following book:\n{object.data_books[id]}")
 
+def bringback(object,id,pid,filename):
+    data = read_data(filename)
+    flag = True
+    for i in data:
+        if int(i[0]) == id:
+            flag = False
+    if flag == True:
+        print("ERROR: The following book was not signed out!")
+    else:
+        for i in range(0,len(data)):
+            if int(data[i][0]) == id:
+                del data[i]
+                break
+        with open(filename, mode='w') as csv_file:
+            csv_data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for i in data:
+                csv_data.writerow(i)
+        print(f"\n{object.data_person[pid].name} has signed in the following book:\n{object.data_books[id]}")
+        
+
+
+
 def user_search_id(object, id, filename):
     id = int(id)
     data = read_data(filename)
