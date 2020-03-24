@@ -23,7 +23,7 @@ while flag == True:
     key1 = input("Input a command: ")
     key1 = key1.lower()
     if key1 == "h" or key1 == "help":
-        pass
+        print("Commands:\n\tt or takeout - To sign out a book\n\tr or return - To sign in a book\n\tu or user - To search up a user\n\tq or quit - To quit the program\n")
     elif key1 == "q" or key1 == "quit":
         print("GoodBye!")
         flag = False
@@ -83,8 +83,71 @@ while flag == True:
                         print("Book not found")
                     else:
                         bringback(a,int(bringid),int(id),filename)
-    
-
+    elif key1 == "t" or key1 == "takeout":
+        key1 = input("Would you like to use the student's username or id?: ")
+        key1 = key1.lower()
+        if key1 == "username":
+            username = input("Please enter the student's username: ")
+            id = None
+            for i in a.data_person:
+                if i.username == username:
+                    id = i.pID
+            if id == None:
+                print("ERROR: Username NOT found!")
+            else:
+                bringtype = input("Would you like to use ISBN or the ID?: ")
+                bringtype = bringtype.lower()
+                if bringtype == "id":
+                    bringid = input("Input the ID: ")
+                    bringid = int(bringid)
+                    takeout(a,int(bringid),int(id),filename)
+                elif bringtype == "isbn":
+                    bringisbn = input("Input the ISBN: ")
+                    bringisbn = int(bringisbn)
+                    bringid = None
+                    for i in a.data_books:
+                        if len(i.data[3]) == 0:
+                            continue
+                        if int(i.data[3]) == bringisbn:
+                            bringid = int(i.data[0])
+                    if bringid == None:
+                        print("Book not found")
+                    else:
+                        takeout(a,int(bringid),int(id),filename)
+        if key1 == "id":
+            id = input("Please enter the student's ID: ")
+            id = int(id)
+            if id > len(a.data_person):
+                print("ERROR: ID NOT found!")
+            else:
+                bringtype = input("Would you like to use ISBN or the ID?: ")
+                bringtype = bringtype.lower()
+                if bringtype == "id":
+                    bringid = input("Input the ID: ")
+                    bringid = int(bringid)
+                    takeout(a,int(bringid),int(id),filename)
+                elif bringtype == "isbn":
+                    bringisbn = input("Input the ISBN: ")
+                    bringisbn = int(bringisbn)
+                    bringid = None
+                    for i in a.data_books:
+                        if len(i.data[3]) == 0:
+                            continue
+                        elif int(i.data[3]) == bringisbn:
+                            bringid = int(i.data[0])
+                    if bringid == None:
+                        print("Book not found")
+                    else:
+                        takeout(a,int(bringid),int(id),filename)
+    elif key1 == "u" or key1 == "user":
+        key1 = input("Would you like to use the student's username or id?: ")
+        key1 = key1.lower()
+        if key1 == "username":
+            username = input("Please enter the student's username: ")
+            username_search(a, username, filename)
+        elif key1 == "id":
+            id = input("Please enter the student's ID: ")
+            user_search_id(a, int(id), filename)
 
 
 
