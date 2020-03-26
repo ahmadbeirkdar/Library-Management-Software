@@ -88,3 +88,10 @@ def username_search(object, username, filename):
                 j += 1
     else:
         print("User not found")  
+
+def book_search(object, bookname):
+    books =[]
+    for i in object.data_books:
+        if bookname.lower() in i.data[4].lower():
+            books.append(i)
+    return books

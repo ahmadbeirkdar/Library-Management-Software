@@ -23,7 +23,7 @@ while flag == True:
     key1 = input("Input a command: ")
     key1 = key1.lower()
     if key1 == "h" or key1 == "help":
-        print("Commands:\n\tt or takeout - To sign out a book\n\tr or return - To sign in a book\n\tu or user - To search up a user\n\tq or quit - To quit the program\n")
+        print("Commands:\n\tt or takeout - To sign out a book\n\tr or return - To sign in a book\n\tu or user - To search up a user\n\tq or quit - To quit the program\n\tb or book - To search books\n")
     elif key1 == "q" or key1 == "quit":
         print("GoodBye!")
         flag = False
@@ -148,11 +148,15 @@ while flag == True:
         elif key1 == "id":
             id = input("Please enter the student's ID: ")
             user_search_id(a, int(id), filename)
-
+    elif key1 == "b" or key1 == "book":
+        title = input("Please enter the title, or part of the title: ")
+        list_books = book_search(a,title)
+        for i in list_books:
+            print(i)
 
 
 
 #TODO: 
-    # Implement book search
-    # switch statement possibly until GUI is ready
     # Implement in main func
+    # Implement due dates, with email system
+    # Start slowly implementing GUI
