@@ -73,7 +73,7 @@ class book_data():
     #     s = s+"\n"
     #     return s
     def __str__(self):
-        s = f"\tTitle: {self.data[4]}\n\tISBN: {self.data[3]}\n\tAuthor: {self.data[6]}\n"
+        s = f"\t\nTitle: {self.data[4]}\n\tISBN: {self.data[3]}\n\tAuthor: {self.data[6]}"
         return s
 
 

@@ -1,5 +1,6 @@
 import csv
-from datetime import datetime 
+from datetime import datetime, timedelta
+
 def read_data(filename):
     data =[]
     with open(filename) as csv_file:
@@ -8,7 +9,7 @@ def read_data(filename):
             data.append(line)
     return data
 
-def takeout(object, id, pid, filename):
+def takeout(object, id, pid, due, filename):
     data = read_data(filename)
     flag = True
     for i in data:
@@ -17,10 +18,11 @@ def takeout(object, id, pid, filename):
             flag = False
             break
     if len(data) == 0 or flag == True:
-        datenow = datetime.now()
+        datenow = datetime.now().date()
+        duedate = datenow + timedelta(days=due)
         with open(filename, mode='a+') as csv_file:
             csv_data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            csv_data.writerow([id,pid,str(datenow)])
+            csv_data.writerow([id,pid,str(datenow), str(duedate)])
         print(f"\n{object.data_person[pid].name} has taken out the following book:\n{object.data_books[id]}")
 
 def bringback(object,id,pid,filename):
@@ -50,10 +52,12 @@ def user_search_id(object, id, filename):
     data = read_data(filename)
     books = []
     dates = []
+    duedate = []
     for i in data:
         if int(i[1]) == id:
             books.append(object.data_books[int(i[0])])
             dates.append(i[2])
+            duedate.append(i[3])
     if len(books) == 0:
         print("No loans under this account")
     else:
@@ -61,7 +65,8 @@ def user_search_id(object, id, filename):
         j = 0
         for i in books:
             print(i)
-            print(f"\tOn: {dates[j]}\n")
+            print(f"\tSigned out: {dates[j]}")
+            print(f"\tDue on: {duedate[j]}\n")
             j += 1
 
 def username_search(object, username, filename):
@@ -95,3 +100,28 @@ def book_search(object, bookname):
         if bookname.lower() in i.data[4].lower():
             books.append(i)
     return books
+
+def sendemail(object,Remail,Semail,EmailPass, userid, bookid, date):
+    import smtplib, ssl
+    from email.message import EmailMessage
+    port = 465
+    smtp_server = "smtp.gmail.com"
+    sender_email = Semail
+    password = EmailPass
+    
+
+    msg = EmailMessage()
+    msg.set_content(f"Hello {object.data_person[userid].name}, \nThe following book is due on {date}:\n{object.data_books[bookid]}")
+
+    msg['Subject'] = f'{object.data_books[bookid].data[4]} is due!'
+    msg['From'] = Semail
+    msg['To'] = Remail
+
+    # Send the message via our own SMTP server.
+    server = smtplib.SMTP_SSL(smtp_server, port)
+    server.login(Semail, password)
+    server.send_message(msg)
+    server.quit()
+   
+
+

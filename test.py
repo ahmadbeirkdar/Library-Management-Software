@@ -2,10 +2,12 @@ from classes import *
 from datafunc import *
 from main_func import *
 
+
 filename_book = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/Books.csv"
 filename_person = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/users.csv"
 filename_data = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/data.csv"
 filename = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/data.csv"
+duetime = 14
     
 a = parse_data(filename_book, filename_person, filename_data)
 a.parse_books()
@@ -16,9 +18,11 @@ a.parse_data()
 # user_search_id(a, 15, filename)
 # username_search(a, "test", filename)
 
+# sendemail(a,"ahmadb@protonmail.com", "sending email", "pass", 2, 15, datetime.now().date())
+
 flag = True
 print("Simple Library Software\n")
-while flag == True:
+while flag:
     print("Please enter help or h for help")
     key1 = input("Input a command: ")
     key1 = key1.lower()
@@ -100,7 +104,7 @@ while flag == True:
                 if bringtype == "id":
                     bringid = input("Input the ID: ")
                     bringid = int(bringid)
-                    takeout(a,int(bringid),int(id),filename)
+                    takeout(a,int(bringid),int(id), duetime,filename)
                 elif bringtype == "isbn":
                     bringisbn = input("Input the ISBN: ")
                     bringisbn = int(bringisbn)
@@ -113,7 +117,7 @@ while flag == True:
                     if bringid == None:
                         print("Book not found")
                     else:
-                        takeout(a,int(bringid),int(id),filename)
+                        takeout(a,int(bringid),int(id), duetime,filename)
         if key1 == "id":
             id = input("Please enter the student's ID: ")
             id = int(id)
@@ -125,7 +129,7 @@ while flag == True:
                 if bringtype == "id":
                     bringid = input("Input the ID: ")
                     bringid = int(bringid)
-                    takeout(a,int(bringid),int(id),filename)
+                    takeout(a,int(bringid),int(id),duetime,filename)
                 elif bringtype == "isbn":
                     bringisbn = input("Input the ISBN: ")
                     bringisbn = int(bringisbn)
@@ -138,7 +142,7 @@ while flag == True:
                     if bringid == None:
                         print("Book not found")
                     else:
-                        takeout(a,int(bringid),int(id),filename)
+                        takeout(a,int(bringid),int(id),duetime,filename)
     elif key1 == "u" or key1 == "user":
         key1 = input("Would you like to use the student's username or id?: ")
         key1 = key1.lower()
@@ -158,5 +162,12 @@ while flag == True:
 
 #TODO: 
     # Implement in main func
-    # Implement due dates, with email system
+    # Due dates:
+        # Implement Due dates - DONE
+        # Email - DONE
+        # Automate email:
+            # 2 Days before
+            # On the day
+            # After every week
     # Start slowly implementing GUI
+
