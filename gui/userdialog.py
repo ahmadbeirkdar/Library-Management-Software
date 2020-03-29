@@ -1,16 +1,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem, QDialog, QMessageBox, QAction, QWidget
 from classes import *
 from datafunc import *
 
 
 class Ui_Dialog(object):
-    def __init__(self, id,data_books, data_person, data):
+    def __init__(self, id,data_books, data_person, data, filename, due, object):
         super().__init__()
         self.id = id
         self.data_books = data_books
         self.data_person = data_person
         self.data = data
+        self.filename = filename
+        self.due = due
+        self.object = object
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -76,6 +79,8 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.pushButton.clicked.connect(self.Signout)
+        
         self.populateuser()
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -105,8 +110,50 @@ class Ui_Dialog(object):
         self.label_3.setText(_translate("Dialog", "ISBN"))
         self.label_4.setText(_translate("Dialog", "ID"))
         self.pushButton.setText(_translate("Dialog", "Sign Out"))
-        self.pushButton_2.setText(_translate("Dialog", "Ok"))
+        #self.pushButton_2.setText(_translate("Dialog", "Ok"))
 
+  
+
+    def Signout(self):
+        Bid = self.lineEdit.text()
+        isbn = self.lineEdit_2.text()
+        if len(Bid) > 0:
+            if int(Bid) < len(self.data_books):
+                s = takeout(self.object,int(Bid), self.id, self.due,self.filename)
+
+                # self.object.parse_data()
+                # self.data = []
+                # self.tableWidget.setRowCount(0)
+                # # self.data = self.object.data
+                
+                self.populateuser()
+                msg = QMessageBox()
+                msg.setWindowTitle("Library")
+                msg.setText(s)
+                x = msg.exec_()
+            else:
+                msg = QMessageBox()
+                msg.setWindowTitle("Library")
+                msg.setText("ERROR: YOU LIKELY ENTERED AN OUT OF RANGE BOOK ID")
+                x = msg.exec_()
+        elif len(isbn) > 0:
+            bringisbn = int(isbn)
+            bringid = None
+            for i in self.data_books:
+                if len(i.data[3]) == 0:
+                    continue
+                if int(i.data[3]) == bringisbn:
+                    bringid = int(i.data[0])
+            if bringid == None:
+                s = "Book Not Found"
+            
+            else:
+                s = takeout(self.object,int(bringid),self.id, self.due,self.filename)
+                self.populateuser()
+            msg = QMessageBox()
+            msg.setWindowTitle("Library")
+            msg.setText(s)
+            x = msg.exec_()
     def populateuser(self):
         self.tableWidget_2.setRowCount(5)
         self.tableWidget_2.setColumnCount(1)
@@ -115,6 +162,8 @@ class Ui_Dialog(object):
         #IMPLMENT DUES LATER
         for i in range(0,4):
             self.tableWidget_2.setItem(i, 0,QTableWidgetItem(self.data_person[self.id].data[i]))
+        self.data  = read_data(self.filename)
+
         books = []
         dates = []
         duedate = []

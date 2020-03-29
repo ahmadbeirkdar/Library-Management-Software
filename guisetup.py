@@ -22,7 +22,7 @@ a.parse_data()
 import sys
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
-ui = Ui_MainWindow(a.data_books,a.data_person,a.data)
+ui = Ui_MainWindow(a.data_books,a.data_person,a.data,filename, duetime, a)
 ui.setupUi(MainWindow)
 
 MainWindow.show()

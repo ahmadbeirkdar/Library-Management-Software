@@ -7,11 +7,14 @@ from userdialog import *
 
 
 class Ui_MainWindow(object):
-    def __init__(self,data_books, data_person, data):
+    def __init__(self,data_books, data_person, data, filename, due, object):
         super().__init__() 
         self.data_books = data_books
         self.data_person = data_person
         self.data = data
+        self.filename = filename
+        self.object = object
+        self.due = due
         
         
 
@@ -160,11 +163,10 @@ class Ui_MainWindow(object):
         # import sys
         # app = QtWidgets.QApplication(sys.argv)
         self.Dialog = QtWidgets.QDialog()
-        self.personui = Ui_Dialog(pID, self.data_books, self.data_person, self.data)
+        self.personui = Ui_Dialog(pID, self.data_books, self.data_person, self.data, self.filename,self.due, self.object)
         self.personui.setupUi(self.Dialog)
         self.Dialog.show()
         # sys.exit(app.exec_())
-
 
     def populateperson(self):
         row = len(self.data_person)
