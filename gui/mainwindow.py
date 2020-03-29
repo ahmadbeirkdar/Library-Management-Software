@@ -214,7 +214,7 @@ class Ui_MainWindow(object):
                 self.tableWidget_2.setItem(i, 3,QTableWidgetItem(self.userlist[i].data[3]))
         else:
             self.userlist = self.data_person
-        #     self.populateperson()
+            self.populateperson()
         
     def book_search(self):
         books =[]
