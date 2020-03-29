@@ -24,14 +24,19 @@ Current Features:
 
 What is planned soon/TODO:
 
-View the following link: 
+* View the following link: 
 
-https://github.com/ahmadbeirkdar/Library-Management-Software/projects
+* https://github.com/ahmadbeirkdar/Library-Management-Software/projects
 
+CSV columns for each file, the following format will stay:
+
+* books.csv - Col 1 ID(From 0 to whatever), Col 2 Title, Col 3 Author, Col 4 ISBN, Col 5 Location
+
+* users.csv - Col 1 ID(From 0 to whatever), Col 2 name, Col 3 username, Col 4 email
 
 Small Video Showcase:
 
-Note: This is as of March 28,2020, this may not be full up to date.
+* Note: This is as of March 28,2020, this may not be full up to date.
 
 [![](http://img.youtube.com/vi/WKM4OThBwMM/0.jpg)](http://www.youtube.com/watch?v=WKM4OThBwMM "")
 
