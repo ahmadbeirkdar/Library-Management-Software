@@ -9,22 +9,24 @@ No ETA
 
   
 
-Right now the following works:
+Current Features:
 
 * Storing books, users and the sign in and sign out of the books
 
 * User and book search
+
+* Due dates w/ emails
 
 * Currently it could work as a personally library management software, it has the essential features.
 
 * Simple GUI, working on a full implementation 
 
 
-What is planned soon:
+What is planned soon/TODO:
 
-* Due dates, with email system
+View the following link: 
 
-* Rolling out GUI slowly
+https://github.com/ahmadbeirkdar/Library-Management-Software/projects
 
 
 Files:
