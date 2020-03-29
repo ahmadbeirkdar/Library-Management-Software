@@ -44,9 +44,6 @@ def bringback(object,id,pid,filename):
                 csv_data.writerow(i)
         print(f"\n{object.data_person[pid].name} has signed in the following book:\n{object.data_books[id]}")
         
-
-
-
 def user_search_id(object, id, filename):
     id = int(id)
     data = read_data(filename)

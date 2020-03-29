@@ -39,7 +39,7 @@ class parse_data():
                     line_count +=1
                 else:
                     #As stated above, same thing for now keeping it name and username and ID
-                    self.data_person.append(person(line[0],line[1], line[2]))
+                    self.data_person.append(person(line[0],line[1], line[2],line[3]))
         #debug
         # print(len(self.data_person))
 
@@ -48,10 +48,8 @@ class parse_data():
             csv_data = csv.reader(csv_file, delimiter=',')
             line_count = 0
             for line in csv_data:
-                if line_count == 0:
-                     line_count +=1
-                else:
                     self.data.append(line)
+
         #debug
         # print(self.data)
 
@@ -78,7 +76,9 @@ class book_data():
 
 
 class person:
-    def __init__(self, pID, name, username):
+    def __init__(self, pID, name, username, email):
         self.name = name
         self.username = username
         self.pID = pID
+        self.email = email
+        self.data = [pID,name,username,email]

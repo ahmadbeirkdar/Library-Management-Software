@@ -1,7 +1,7 @@
 
 ## Library Management Software
 
-Non GUI implementation for now, planned to possibly use QT
+Using QT GUI framework
 
 still in major development
 
@@ -16,6 +16,8 @@ Right now the following works:
 * User and book search
 
 * Currently it could work as a personally library management software, it has the essential features.
+
+* Simple GUI, working on a full implementation 
 
 
 What is planned soon:
