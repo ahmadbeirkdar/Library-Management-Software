@@ -29,6 +29,13 @@ View the following link:
 https://github.com/ahmadbeirkdar/Library-Management-Software/projects
 
 
+Small Video Showcase:
+
+Note: This is as of March 28,2020, this may not be full up to date.
+
+[![](http://img.youtube.com/vi/WKM4OThBwMM/0.jpg)](http://www.youtube.com/watch?v=WKM4OThBwMM "")
+
+
 Files:
 
 * test.py, is a simple test file to show real world use, but this is the non-GUI implementation
