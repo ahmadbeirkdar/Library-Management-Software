@@ -37,4 +37,8 @@ Files:
 
 * classes.py, pretty clear, where the classes for the parser, books and users is stored, I don't see this file changing drastically for now. Maybe some small additions or changes
 
+* guisetup.py, this file is just to setup all the classes and functions for the gui, it will most likely expand
+
+* gui folder, includes everything gui
+
 http://ahmad.ltd
