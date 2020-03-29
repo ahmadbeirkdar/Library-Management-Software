@@ -52,8 +52,13 @@ class parse_data():
 
         #debug
         # print(self.data)
-    # def addbook(self, title, author, isbn = None,location = None):
-        # pass
+    def addbook(self, title, author, isbn = None,location = None):
+        data = [len(self.data_books),title,author, isbn,location]
+        with open(self.filename_book, mode='a+') as csv_file:
+            csv_data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            csv_data.writerow(data)
+        
+        self.data_books.append(book_data(data))
 
 
 

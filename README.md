@@ -32,7 +32,7 @@ CSV columns for each file, the following format will stay:
 
 * books.csv - Col 1 ID(From 0 to whatever), Col 2 Title, Col 3 Author, Col 4 ISBN, Col 5 Location
 
-* users.csv - Col 1 ID(From 0 to whatever), Col 2 name, Col 3 username, Col 4 email
+* users.csv - Col 1 ID(From 0 to whatever), Col 2 name, Col 3 username, Col 4 email, Col 5 Dues
 
 Small Video Showcase:
 

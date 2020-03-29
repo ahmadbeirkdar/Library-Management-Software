@@ -34,7 +34,11 @@ sys.exit(app.exec_())
     # Col 1 ID, Col 2 Title, Col 3 Author, Col 4 ISBN, Col 5 Location
 
 #TODO:
-    #Implement bring back books
+    # Implement bring back books
     # Book add
-        # Implement book csv standared
+        # Implement book csv standared - Done
+        # csv append
+    # Implement Dues system
+        # csv
+        
         

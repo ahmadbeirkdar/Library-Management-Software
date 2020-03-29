@@ -108,6 +108,7 @@ class Ui_MainWindow(object):
         self.lineEdit.textChanged.connect(self.book_search)
         self.lineEdit_2.textChanged.connect(self.user_search)
         self.pushButton_3.clicked.connect(self.book_add)
+        
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.populatebooks()
         self.populateperson()
@@ -191,11 +192,13 @@ class Ui_MainWindow(object):
         self.personui.setupUi(self.Dialog)
         self.Dialog.show()
         # sys.exit(app.exec_())
+    
     def book_add(self,item):
         self.Dialog2 = QtWidgets.QDialog()
         self.bookui = Ui_Dialog_bookadd(self.object)
         self.bookui.setupUi(self.Dialog2)
         self.Dialog2.show()
+        
     def user_search(self):
         
         username = self.lineEdit_2.text()
@@ -242,11 +245,11 @@ class Ui_MainWindow(object):
             for i in range(row):
                 #Change later to standerize csv file
                 # self.setFlags(QtCore.Qt.ItemIsEnabled)
-                self.tableWidget.setItem(i, 0,QTableWidgetItem(books[i].data[0]))
-                self.tableWidget.setItem(i, 1,QTableWidgetItem(books[i].data[4]))
-                self.tableWidget.setItem(i, 2,QTableWidgetItem(books[i].data[6]))
-                self.tableWidget.setItem(i, 3,QTableWidgetItem(books[i].data[15]))
-                self.tableWidget.setItem(i, 4,QTableWidgetItem(books[i].data[3]))
+                self.tableWidget.setItem(i, 0,QTableWidgetItem(books[i].id))
+                self.tableWidget.setItem(i, 1,QTableWidgetItem(books[i].title))
+                self.tableWidget.setItem(i, 2,QTableWidgetItem(books[i].author))
+                self.tableWidget.setItem(i, 3,QTableWidgetItem(books[i].isbn))
+                self.tableWidget.setItem(i, 4,QTableWidgetItem(books[i].location))
                 for j in self.data:
                     if int(j[0]) == i:
                         self.tableWidget.setItem(i, 5,QTableWidgetItem("Signed Out"))
