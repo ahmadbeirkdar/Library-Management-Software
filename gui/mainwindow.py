@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem
 from classes import *
 from datafunc import *
 from userdialog import *
+from bookadd import *
 
 
 class Ui_MainWindow(object):
@@ -106,6 +107,7 @@ class Ui_MainWindow(object):
         self.tableWidget_2.itemDoubleClicked.connect(self.personclick)
         self.lineEdit.textChanged.connect(self.book_search)
         self.lineEdit_2.textChanged.connect(self.user_search)
+        self.pushButton_3.clicked.connect(self.book_add)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.populatebooks()
         self.populateperson()
@@ -167,11 +169,11 @@ class Ui_MainWindow(object):
         for i in range(row):
             #Change later to standerize csv file
             # self.setFlags(QtCore.Qt.ItemIsEnabled)
-            self.tableWidget.setItem(i, 0,QTableWidgetItem(self.data_books[i].data[0]))
-            self.tableWidget.setItem(i, 1,QTableWidgetItem(self.data_books[i].data[4]))
-            self.tableWidget.setItem(i, 2,QTableWidgetItem(self.data_books[i].data[6]))
-            self.tableWidget.setItem(i, 3,QTableWidgetItem(self.data_books[i].data[15]))
-            self.tableWidget.setItem(i, 4,QTableWidgetItem(self.data_books[i].data[3]))
+            self.tableWidget.setItem(i, 0,QTableWidgetItem(self.data_books[i].id))
+            self.tableWidget.setItem(i, 1,QTableWidgetItem(self.data_books[i].title))
+            self.tableWidget.setItem(i, 2,QTableWidgetItem(self.data_books[i].author))
+            self.tableWidget.setItem(i, 3,QTableWidgetItem(self.data_books[i].location))
+            self.tableWidget.setItem(i, 4,QTableWidgetItem(self.data_books[i].isbn))
             for j in self.data:
                 if int(j[0]) == i:
                     self.tableWidget.setItem(i, 5,QTableWidgetItem("Signed Out"))
@@ -189,7 +191,11 @@ class Ui_MainWindow(object):
         self.personui.setupUi(self.Dialog)
         self.Dialog.show()
         # sys.exit(app.exec_())
-    #Investigate LAGGGGGGGGGGGGGGGGGGG
+    def book_add(self,item):
+        self.Dialog2 = QtWidgets.QDialog()
+        self.bookui = Ui_Dialog_bookadd(self.object)
+        self.bookui.setupUi(self.Dialog2)
+        self.Dialog2.show()
     def user_search(self):
         
         username = self.lineEdit_2.text()
@@ -221,7 +227,7 @@ class Ui_MainWindow(object):
         bookname = self.lineEdit.text()
         if len(bookname) > 0:
             for i in self.data_books:
-                if bookname.lower() in i.data[4].lower():
+                if bookname.lower() in i.title.lower():
                     books.append(i)
             row = len(books)
             self.tableWidget.setRowCount(row)

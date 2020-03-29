@@ -4,7 +4,7 @@ from mainwindow import *
 from userdialog import *
 from classes import *
 from datafunc import *
-
+from bookadd import *
 
 
 filename_book = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/Books.csv"
@@ -29,3 +29,12 @@ MainWindow.show()
 
 
 sys.exit(app.exec_())
+
+#NOTE:
+    # Col 1 ID, Col 2 Title, Col 3 Author, Col 4 ISBN, Col 5 Location
+
+#TODO:
+    #Implement bring back books
+    # Book add
+        # Implement book csv standared
+        

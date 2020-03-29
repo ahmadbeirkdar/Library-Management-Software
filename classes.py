@@ -52,26 +52,33 @@ class parse_data():
 
         #debug
         # print(self.data)
+    # def addbook(self, title, author, isbn = None,location = None):
+        # pass
+
+
 
 #Book Data Class
 class book_data():
 
     def __init__(self, data):
         self.data = data
+        self.id = data[0]
+        self.title = data[1]
+        self.author = data[2]
+        self.isbn = data[3]
+        self.location = data[4]
 
     def addcell(self):
         for i in self.data:
             self.list1.append(i)
     
-    def title(self):
-        return self.data[4]
 
     # def __str__(self):
     #     s = ' '.join([str(i) for i in self.data])
     #     s = s+"\n"
     #     return s
     def __str__(self):
-        s = f"\t\nTitle: {self.data[4]}\n\tISBN: {self.data[3]}\n\tAuthor: {self.data[6]}"
+        s = f"\t\nTitle: {self.title}\n\tISBN: {self.isbn}\n\tAuthor: {self.author}"
         return s
 
 

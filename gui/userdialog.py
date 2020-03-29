@@ -80,8 +80,10 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         self.pushButton.clicked.connect(self.Signout)
+        self.pushButton_2.clicked.connect(Dialog.accept)
      
         self.populateuser()
+    
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
@@ -110,10 +112,9 @@ class Ui_Dialog(object):
         self.label_3.setText(_translate("Dialog", "ISBN"))
         self.label_4.setText(_translate("Dialog", "ID"))
         self.pushButton.setText(_translate("Dialog", "Sign Out"))
-        #self.pushButton_2.setText(_translate("Dialog", "Ok"))
+        self.pushButton_2.setText(_translate("Dialog", "Ok"))
 
     
-
     def Signout(self):
         Bid = self.lineEdit.text()
         isbn = self.lineEdit_2.text()
@@ -140,10 +141,10 @@ class Ui_Dialog(object):
             bringisbn = int(isbn)
             bringid = None
             for i in self.data_books:
-                if len(i.data[3]) == 0:
+                if len(i.isbn) == 0:
                     continue
-                if int(i.data[3]) == bringisbn:
-                    bringid = int(i.data[0])
+                if int(i.isbn) == bringisbn:
+                    bringid = int(i.id)
             if bringid == None:
                 s = "Book Not Found"
             
@@ -183,8 +184,8 @@ class Ui_Dialog(object):
             header1.setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeToContents)
             for i in range(len(books)):
                 self.tableWidget.setItem(i, 0,QTableWidgetItem(books[i]))
-                self.tableWidget.setItem(i, 1,QTableWidgetItem(self.data_books[int(books[i])].data[4]))
-                self.tableWidget.setItem(i, 2,QTableWidgetItem(self.data_books[int(books[i])].data[3]))
+                self.tableWidget.setItem(i, 1,QTableWidgetItem(self.data_books[int(books[i])].title))
+                self.tableWidget.setItem(i, 2,QTableWidgetItem(self.data_books[int(books[i])].isbn))
                 self.tableWidget.setItem(i, 3,QTableWidgetItem(dates[i]))
                 self.tableWidget.setItem(i,4,QTableWidgetItem(duedate[i]))
 

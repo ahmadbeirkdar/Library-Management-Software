@@ -110,7 +110,7 @@ def username_search(object, username, filename):
 def book_search(object, bookname):
     books =[]
     for i in object.data_books:
-        if bookname.lower() in i.data[4].lower():
+        if bookname.lower() in i.title.lower():
             books.append(i)
     return books
 
@@ -126,7 +126,7 @@ def sendemail(object,Remail,Semail,EmailPass, userid, bookid, date):
     msg = EmailMessage()
     msg.set_content(f"Hello {object.data_person[userid].name}, \nThe following book is due on {date}:\n{object.data_books[bookid]}")
 
-    msg['Subject'] = f'{object.data_books[bookid].data[4]} is due!'
+    msg['Subject'] = f'{object.data_books[bookid].title} is due!'
     msg['From'] = Semail
     msg['To'] = Remail
 
