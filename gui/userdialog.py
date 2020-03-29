@@ -80,7 +80,7 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         self.pushButton.clicked.connect(self.Signout)
-        
+     
         self.populateuser()
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -112,7 +112,7 @@ class Ui_Dialog(object):
         self.pushButton.setText(_translate("Dialog", "Sign Out"))
         #self.pushButton_2.setText(_translate("Dialog", "Ok"))
 
-  
+    
 
     def Signout(self):
         Bid = self.lineEdit.text()
