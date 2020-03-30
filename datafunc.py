@@ -48,7 +48,8 @@ def bringback(object,id,pid,filename):
         if int(i[0]) == id:
             flag = False
     if flag == True:
-        print("ERROR: The following book was not signed out!")
+        s = "ERROR: The following book was not signed out!"
+        return s
     else:
         for i in range(0,len(data)):
             if int(data[i][0]) == id:
@@ -58,7 +59,31 @@ def bringback(object,id,pid,filename):
             csv_data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             for i in data:
                 csv_data.writerow(i)
-        print(f"\n{object.data_person[pid].name} has signed in the following book:\n{object.data_books[id]}")
+        s = (f"\n{object.data_person[pid].name} has signed in the following book:\n{object.data_books[id]}")
+        return s
+
+def extend(object,id,pid, day,filename):
+    data = read_data(filename)
+    datenow = datetime.now().date()
+    duedate = datenow + timedelta(days=day)
+    flag = True
+    for i in data:
+        if int(i[0]) == id:
+            flag = False
+    if flag == True:
+        s = "ERROR: The following book was not signed out!"
+        return s
+    else:
+        for i in range(0,len(data)):
+            if int(data[i][0]) == id:
+                data[i] = [id,pid,str(datenow), str(duedate)]
+                break
+        with open(filename, mode='w') as csv_file:
+            csv_data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for i in data:
+                csv_data.writerow(i)
+        s = (f"\n{object.data_person[pid].name} has extended by {day} days the following book:\n{object.data_books[id]}")
+        return s
         
 def user_search_id(object, id, filename):
     id = int(id)

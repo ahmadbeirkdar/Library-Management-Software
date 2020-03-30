@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem,QMessageBox
 
 from classes import *
 from datafunc import *
@@ -147,14 +147,14 @@ class Ui_MainWindow(object):
 
         
      
-    def eventFilter(self, source, event):
-        if (event.type() == QtCore.QEvent.MouseButtonDblClick and
-            event.buttons() == QtCore.Qt.RightButton and
-            source is self.tblBoxes.viewport()):
-            item = self.tblBoxes.itemAt(event.pos())
-            if item is not None:
-                print('dblclick:', item.row(), item.column())
-        return super(MainWindow, self).eventFilter(source, event)
+    # def eventFilter(self, source, event):
+    #     if (event.type() == QtCore.QEvent.MouseButtonDblClick and
+    #         event.buttons() == QtCore.Qt.RightButton and
+    #         source is self.tblBoxes.viewport()):
+    #         item = self.tblBoxes.itemAt(event.pos())
+    #         if item is not None:
+    #             print('dblclick:', item.row(), item.column())
+    #     return super(MainWindow, self).eventFilter(source, event)
 
     def populatebooks(self):
         row = len(self.data_books)

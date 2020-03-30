@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem, QDialog, QMessageBox, QAction, QWidget
+from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem, QDialog, QMessageBox, QAction, QWidget, QInputDialog
 from classes import *
 from datafunc import *
 
 
-class Ui_Dialog(object):
+class Ui_Dialog(QWidget):
     def __init__(self, id,data_books, data_person, data, filename, due, object):
         super().__init__()
         self.id = id
@@ -14,6 +14,7 @@ class Ui_Dialog(object):
         self.filename = filename
         self.due = due
         self.object = object
+        self.books = []
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -76,11 +77,13 @@ class Ui_Dialog(object):
         self.pushButton_2 = QtWidgets.QPushButton(Dialog)
         self.pushButton_2.setGeometry(QtCore.QRect(260, 560, 112, 32))
         self.pushButton_2.setObjectName("pushButton_2")
+    
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         self.pushButton.clicked.connect(self.Signout)
         self.pushButton_2.clicked.connect(Dialog.accept)
+        self.tableWidget.doubleClicked.connect(self.ask)
      
         self.populateuser()
     
@@ -155,6 +158,35 @@ class Ui_Dialog(object):
             msg.setWindowTitle("Library")
             msg.setText(s)
             x = msg.exec_()
+
+    def ask(self, item):
+        bookid = int(self.books[item.row()])
+        msgbox = QMessageBox()
+        msgbox.setWindowTitle("Prompt")
+        msgbox.setText('Would you like to?')
+        msgbox.addButton(QMessageBox.Cancel)
+        msgbox.addButton('Return', QMessageBox.YesRole)
+        msgbox.addButton('Extend', QMessageBox.NoRole)
+        retval = msgbox.exec_()
+
+        if retval == 0:
+            s = bringback(self.object,bookid,self.id,self.filename)
+            # del self.books[item.row()]
+            self.populateuser()
+            msg = QMessageBox()
+            msg.setWindowTitle("Library")
+            msg.setText(s)
+            x = msg.exec_()
+        if retval == 1:
+            day, ok  = QInputDialog.getText(self, 'Library', 'Enter the amount of days to extend:')
+            s = extend(self.object,int(bookid), int(self.id),int(day),self.filename)
+            self.populateuser()
+            msg = QMessageBox()
+            msg.setWindowTitle("Library")
+            msg.setText(s)
+            x = msg.exec_()
+
+       
     def populateuser(self):
         self.tableWidget_2.setRowCount(5)
         self.tableWidget_2.setColumnCount(1)
@@ -164,17 +196,17 @@ class Ui_Dialog(object):
         for i in range(0,4):
             self.tableWidget_2.setItem(i, 0,QTableWidgetItem(self.data_person[self.id].data[i]))
         self.data  = read_data(self.filename)
-
-        books = []
+        
+        self.books = []
         dates = []
         duedate = []
         for i in self.data:
             if int(i[1]) == self.id:
-                books.append(i[0])
+                self.books.append(i[0])
                 dates.append(i[2])
                 duedate.append(i[3])
-        if len(books) > 0:
-            self.tableWidget.setRowCount(len(books))
+        if len(self.books) > 0:
+            self.tableWidget.setRowCount(len(self.books))
             self.tableWidget.setColumnCount(5)
             header1 = self.tableWidget.horizontalHeader()
             header1.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
@@ -182,10 +214,15 @@ class Ui_Dialog(object):
             header1.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
             header1.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeToContents)
             header1.setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeToContents)
-            for i in range(len(books)):
-                self.tableWidget.setItem(i, 0,QTableWidgetItem(books[i]))
-                self.tableWidget.setItem(i, 1,QTableWidgetItem(self.data_books[int(books[i])].title))
-                self.tableWidget.setItem(i, 2,QTableWidgetItem(self.data_books[int(books[i])].isbn))
+            for i in range(len(self.books)):
+                self.tableWidget.setItem(i, 0,QTableWidgetItem(self.books[i]))
+                self.tableWidget.setItem(i, 1,QTableWidgetItem(self.data_books[int(self.books[i])].title))
+                self.tableWidget.setItem(i, 2,QTableWidgetItem(self.data_books[int(self.books[i])].isbn))
                 self.tableWidget.setItem(i, 3,QTableWidgetItem(dates[i]))
                 self.tableWidget.setItem(i,4,QTableWidgetItem(duedate[i]))
+        elif len(self.books) == 0:
+            self.tableWidget.setRowCount(0)
+        
+        # print(self.books)
+
 
