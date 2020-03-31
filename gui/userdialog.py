@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidget,QTableWidgetItem, QDialog, QMessageBox, QAction, QWidget, QInputDialog
 from classes import *
 from datafunc import *
+from functools import partial
+
 
 
 class Ui_Dialog(QWidget):
@@ -158,7 +160,7 @@ class Ui_Dialog(QWidget):
             msg.setWindowTitle("Library")
             msg.setText(s)
             x = msg.exec_()
-
+    
     def ask(self, item):
         bookid = int(self.books[item.row()])
         msgbox = QMessageBox()
@@ -175,16 +177,19 @@ class Ui_Dialog(QWidget):
             self.populateuser()
             msg = QMessageBox()
             msg.setWindowTitle("Library")
+        
             msg.setText(s)
+            
             x = msg.exec_()
         if retval == 1:
             day, ok  = QInputDialog.getText(self, 'Library', 'Enter the amount of days to extend:')
-            s = extend(self.object,int(bookid), int(self.id),int(day),self.filename)
-            self.populateuser()
-            msg = QMessageBox()
-            msg.setWindowTitle("Library")
-            msg.setText(s)
-            x = msg.exec_()
+            if len(day) > 0:
+                s = extend(self.object,int(bookid), int(self.id),int(day),self.filename)
+                self.populateuser()
+                msg = QMessageBox()
+                msg.setWindowTitle("Library")
+                msg.setText(s)
+                x = msg.exec_()
 
        
     def populateuser(self):

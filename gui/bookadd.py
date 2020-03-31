@@ -109,6 +109,7 @@ class Ui_Dialog_bookadd(object):
                 #self.object.addbook(title, authors,isbn)
                 self.lineEdit_2.repaint()
                 self.lineEdit_4.repaint()
+                
             else:
                 msg = QMessageBox()
                 msg.setWindowTitle("Library")

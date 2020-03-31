@@ -1,4 +1,5 @@
 import csv
+from datafunc import *
 from datetime import datetime 
 class parse_data():
 
@@ -59,6 +60,8 @@ class parse_data():
             csv_data.writerow(data)
         
         self.data_books.append(book_data(data))
+        s = " ".join(data)
+        log(s)
 
 
 

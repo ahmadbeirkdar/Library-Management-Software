@@ -15,3 +15,5 @@ build/main/xref-main.html
 dist/main
 main.spec
 *.pyc
+Library.code-workspace
+LMS.log

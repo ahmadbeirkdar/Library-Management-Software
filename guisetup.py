@@ -1,5 +1,5 @@
 import sys
-sys.path.append('Simple-Library-Software/gui')
+sys.path.append('gui')
 from mainwindow import *
 from userdialog import *
 from classes import *
@@ -7,10 +7,10 @@ from datafunc import *
 from bookadd import *
 
 
-filename_book = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/Books.csv"
-filename_person = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/users.csv"
-filename_data = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/data.csv"
-filename = "/Users/ahmad/Desktop/Projects/Simple-Library-Software/data.csv"
+filename_book = "Books.csv"
+filename_person = "users.csv"
+filename_data = "data.csv"
+filename = "data.csv"
 duetime = 14
     
 a = parse_data(filename_book, filename_person, filename_data)
@@ -34,11 +34,17 @@ sys.exit(app.exec_())
     # Col 1 ID, Col 2 Title, Col 3 Author, Col 4 ISBN, Col 5 Location
 
 #TODO:
-    # Implement bring back books
-    # Book add
+    # Implement bring back books -DONE
+    # Book add - DONE
         # Implement book csv standared - Done
-        # csv append
+        # csv append - DONE
+    # Loging system - DONE
+    # Implement settings
+        # default things
+    # Implement books due
     # Implement Dues system
         # csv
+
+
         
         
