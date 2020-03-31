@@ -1,12 +1,5 @@
 
-## Library Management Software
-
-Using QT GUI framework
-
--
--
--
--
+# Library Management Software
 
 Current Features:
 
