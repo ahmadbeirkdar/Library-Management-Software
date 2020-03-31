@@ -1,6 +1,5 @@
 
 .DS_Store
-*.csv
 tempCodeRunnerFile.py
 build/main/Analysis-00.toc
 __pycache__/main.cpython-38.pyc
@@ -17,3 +16,7 @@ main.spec
 *.pyc
 Library.code-workspace
 LMS.log
+Books.csv
+old.csv
+users.csv
+usersab.csv
