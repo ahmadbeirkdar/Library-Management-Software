@@ -3,11 +3,10 @@
 
 Using QT GUI framework
 
-still in major development
-
-No ETA
-
-  
+-
+-
+-
+-
 
 Current Features:
 
@@ -15,11 +14,9 @@ Current Features:
 
 * User and book search
 
-* Due dates w/ emails
+* Due dates, and extensions
 
-* Currently it could work as a personally library management software, it has the essential features.
-
-* Simple GUI, working on a full implementation 
+* Adding books to database, with ISBN autofill
 
 
 What is planned soon/TODO:
@@ -36,10 +33,15 @@ CSV columns for each file, the following format will stay:
 
 Small Video Showcase:
 
-* Note: This is as of March 28,2020, this may not be full up to date.
+* Note: This is as of March 30,2020, this may not be full up to date.
 
-[![](http://img.youtube.com/vi/WKM4OThBwMM/0.jpg)](http://www.youtube.com/watch?v=WKM4OThBwMM "")
+[![](http://img.youtube.com/vi/8VYFRdHUryc/0.jpg)](http://www.youtube.com/watch?v=8VYFRdHUryc "")
 
+How to Use:
+
+* Have the following CSVs from what is listed above, after the 5th columns, you can put whatever data you want the program wont touch it
+* Have the following CSVs in the folder of the guisetup.py folder. 
+* Simply run with python3 as follows --> python3 guisetup.py
 
 Files:
 
