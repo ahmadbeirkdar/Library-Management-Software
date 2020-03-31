@@ -22,11 +22,21 @@ class Ui_MainWindow(object):
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1353, 937)
+        MainWindow.resize(1111, 984)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit.setObjectName("lineEdit")
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
+        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout.addWidget(self.pushButton_3, 0, 2, 1, 1)
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget.setGeometry(QtCore.QRect(40, 50, 1271, 441))
         self.tableWidget.setMouseTracking(True)
         self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tableWidget.setObjectName("tableWidget")
@@ -49,8 +59,14 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(5, item)
         self.tableWidget.verticalHeader().setVisible(False)
+        self.gridLayout.addWidget(self.tableWidget, 1, 0, 1, 3)
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.gridLayout.addWidget(self.lineEdit_2, 2, 1, 1, 1)
         self.tableWidget_2 = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget_2.setGeometry(QtCore.QRect(40, 540, 681, 331))
         self.tableWidget_2.setMouseTracking(True)
         self.tableWidget_2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tableWidget_2.setObjectName("tableWidget_2")
@@ -65,33 +81,10 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_2.setHorizontalHeaderItem(3, item)
         self.tableWidget_2.verticalHeader().setVisible(False)
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(930, 820, 281, 41))
-        self.pushButton.setObjectName("pushButton")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(40, 20, 71, 21))
-        self.label.setObjectName("label")
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(110, 20, 281, 21))
-        self.lineEdit.setObjectName("lineEdit")
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(40, 510, 71, 21))
-        self.label_2.setObjectName("label_2")
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_2.setGeometry(QtCore.QRect(110, 510, 281, 21))
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(930, 610, 281, 41))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setGeometry(QtCore.QRect(930, 540, 281, 41))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_4.setGeometry(QtCore.QRect(930, 680, 281, 41))
-        self.pushButton_4.setObjectName("pushButton_4")
+        self.gridLayout.addWidget(self.tableWidget_2, 3, 0, 1, 3)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1353, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1111, 22))
         self.menubar.setObjectName("menubar")
         self.menuLibrary = QtWidgets.QMenu(self.menubar)
         self.menuLibrary.setObjectName("menuLibrary")
@@ -100,23 +93,22 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar.addAction(self.menuLibrary.menuAction())
-
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.tableWidget.itemDoubleClicked.connect(self.bookclick)
         self.tableWidget_2.itemDoubleClicked.connect(self.personclick)
         self.lineEdit.textChanged.connect(self.book_search)
         self.lineEdit_2.textChanged.connect(self.user_search)
         self.pushButton_3.clicked.connect(self.book_add)
-        
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.populatebooks()
         self.populateperson()
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Library Management Software"))
+        self.label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">Search:</span></p></body></html>"))
+        self.pushButton_3.setText(_translate("MainWindow", "Add Book"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
         item = self.tableWidget.horizontalHeaderItem(1)
@@ -129,6 +121,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "ISBN"))
         item = self.tableWidget.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "Status"))
+        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">Search:</span></p></body></html>"))
         item = self.tableWidget_2.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
         item = self.tableWidget_2.horizontalHeaderItem(1)
@@ -137,13 +130,13 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Username"))
         item = self.tableWidget_2.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Email"))
-        self.pushButton.setText(_translate("MainWindow", "Settings"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">Search:</span></p></body></html>"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">Search:</span></p></body></html>"))
-        self.pushButton_2.setText(_translate("MainWindow", "Add User"))
-        self.pushButton_3.setText(_translate("MainWindow", "Add Book"))
-        self.pushButton_4.setText(_translate("MainWindow", "Books Signed Out"))
         self.menuLibrary.setTitle(_translate("MainWindow", "Library"))
+
+
+
+
+
+
 
 
         
@@ -164,8 +157,7 @@ class Ui_MainWindow(object):
         header = self.tableWidget.horizontalHeader()
         header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
         header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeToContents)
+        
         
 
         for i in range(row):
@@ -196,7 +188,7 @@ class Ui_MainWindow(object):
     
     def book_add(self,item):
         self.Dialog2 = QtWidgets.QDialog()
-        self.bookui = Ui_Dialog_bookadd(self.object)
+        self.bookui = Ui_Dialog_bookadd(self.object,self)
         self.bookui.setupUi(self.Dialog2)
         self.Dialog2.show()
         
@@ -239,8 +231,7 @@ class Ui_MainWindow(object):
             header = self.tableWidget.horizontalHeader()
             header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
             header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
-            header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
-            header.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeToContents)
+            
             
 
             for i in range(row):
@@ -277,9 +268,12 @@ class Ui_MainWindow(object):
 
 # self.tableWidget.itemDoubleClicked.connect(self.bookclick)
 #         self.tableWidget_2.itemDoubleClicked.connect(self.personclick)
-#         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+#         self.lineEdit.textChanged.connect(self.book_search)
+#         self.lineEdit_2.textChanged.connect(self.user_search)
+#         self.pushButton_3.clicked.connect(self.book_add)
 #         self.populatebooks()
 #         self.populateperson()
+        
 
 
 

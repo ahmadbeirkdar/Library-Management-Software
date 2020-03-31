@@ -60,8 +60,10 @@ class parse_data():
             csv_data.writerow(data)
         
         self.data_books.append(book_data(data))
-        s = " ".join(data)
-        log(s)
+        s = " "
+        for i in data:
+            s += " " + str(i)
+        log(f"The following book was added {s}")
 
 
 

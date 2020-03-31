@@ -10,9 +10,10 @@ from userdialog import *
 from mainwindow import *
 
 class Ui_Dialog_bookadd(object):
-    def __init__(self, object):
+    def __init__(self, object,window):
         super().__init__()
         self.object = object
+        self.window = window
         
 
     def setupUi(self, Dialog):
@@ -88,6 +89,7 @@ class Ui_Dialog_bookadd(object):
             msg.setWindowTitle("Library")
             msg.setText("Book added")
             x = msg.exec_()
+            self.window.populatebooks()
         else:
             msg = QMessageBox()
             msg.setWindowTitle("Library")
