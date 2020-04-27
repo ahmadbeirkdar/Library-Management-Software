@@ -14,9 +14,13 @@ Current Features:
 
 What is planned soon/TODO:
 
-* View the following link: 
+* Cleaning up code(OOP, and cleaning up my messy quick code)
 
-* https://github.com/ahmadbeirkdar/Library-Management-Software/projects
+* Dues and an email system
+
+* A settings panel
+
+* Managment of multiple libraries 
 
 CSV columns for each file, the following format will stay:
 
