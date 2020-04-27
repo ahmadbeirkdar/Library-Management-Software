@@ -73,7 +73,6 @@ class Ui_Dialog_bookadd(object):
         self.label_3.setText(_translate("Dialog", "Book ID:"))
         self.label_6.setText(str(len(self.object.data_books)))
 
-
     def addbooks(self):
         isbn = self.lineEdit.text()
         title = self.lineEdit_2.text()
@@ -95,7 +94,6 @@ class Ui_Dialog_bookadd(object):
             msg.setWindowTitle("Library")
             msg.setText("ERROR: Please enter a title")
             x = msg.exec_()
-
 
     def isbnlookup(self):
         isbn = self.lineEdit.text()
@@ -123,12 +121,3 @@ class Ui_Dialog_bookadd(object):
             msg.setWindowTitle("Library")
             msg.setText("ERROR: Invalid ISBN")
             x = msg.exec_()
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     Dialog = QtWidgets.QDialog()
-#     ui = Ui_Dialog()
-#     ui.setupUi(Dialog)
-#     Dialog.show()
-#     sys.exit(app.exec_())

@@ -12,21 +12,19 @@ filename_person = "users.csv"
 filename_data = "data.csv"
 filename = "data.csv"
 duetime = 14
-    
+
 a = parse_data(filename_book, filename_person, filename_data)
 a.parse_books()
 a.parse_person()
 a.parse_data()
 
 
-import sys
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
-ui = Ui_MainWindow(a.data_books,a.data_person,a.data,filename, duetime, a)
+ui = Ui_MainWindow(filename, duetime, a)
 ui.setupUi(MainWindow)
 
 MainWindow.show()
-
 
 sys.exit(app.exec_())
 
@@ -40,11 +38,15 @@ sys.exit(app.exec_())
         # csv append - DONE
     # Loging system - DONE
     # Implement settings
-        # default things
+        # default thingss
     # Implement books due
+        # Email
+        # Due books list
     # Implement Dues system
         # csv
+    # Refresh main window for added books and data
+    # Add user functionality 
 
 
-        
-        
+
+

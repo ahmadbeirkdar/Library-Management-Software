@@ -8,17 +8,15 @@ from bookadd import *
 
 
 class Ui_MainWindow(object):
-    def __init__(self,data_books, data_person, data, filename, due, object):
+    def __init__(self,filename, due, object):
         super().__init__() 
-        self.data_books = data_books
-        self.data_person = data_person
-        self.data = data
+        self.data_books = object.data_books
+        self.data_person = object.data_person
+        self.data = object.data
         self.filename = filename
         self.object = object
         self.due = due
         self.userlist = self.data_person
-        
-        
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -33,9 +31,28 @@ class Ui_MainWindow(object):
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setObjectName("lineEdit")
         self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.gridLayout.addWidget(self.pushButton_3, 0, 2, 1, 1)
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.gridLayout.addWidget(self.lineEdit_2, 2, 1, 1, 1)
+        self.tableWidget_2 = QtWidgets.QTableWidget(self.centralwidget)
+        self.tableWidget_2.setMouseTracking(True)
+        self.tableWidget_2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tableWidget_2.setObjectName("tableWidget_2")
+        self.tableWidget_2.setColumnCount(4)
+        self.tableWidget_2.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(3, item)
+        self.tableWidget_2.verticalHeader().setVisible(False)
+        self.gridLayout.addWidget(self.tableWidget_2, 3, 0, 1, 5)
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setMouseTracking(True)
         self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -59,29 +76,19 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(5, item)
         self.tableWidget.verticalHeader().setVisible(False)
-        self.gridLayout.addWidget(self.tableWidget, 1, 0, 1, 3)
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setObjectName("label_2")
-        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.gridLayout.addWidget(self.lineEdit_2, 2, 1, 1, 1)
-        self.tableWidget_2 = QtWidgets.QTableWidget(self.centralwidget)
-        self.tableWidget_2.setMouseTracking(True)
-        self.tableWidget_2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        self.tableWidget_2.setObjectName("tableWidget_2")
-        self.tableWidget_2.setColumnCount(4)
-        self.tableWidget_2.setRowCount(0)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(3, item)
-        self.tableWidget_2.verticalHeader().setVisible(False)
-        self.gridLayout.addWidget(self.tableWidget_2, 3, 0, 1, 3)
+        self.gridLayout.addWidget(self.tableWidget, 1, 0, 1, 5)
+        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.gridLayout.addWidget(self.pushButton_4, 0, 4, 1, 1)
+        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout.addWidget(self.pushButton_3, 0, 3, 1, 1)
+        self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.gridLayout.addWidget(self.pushButton_5, 2, 4, 1, 1)
+        self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.gridLayout.addWidget(self.pushButton_6, 2, 3, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1111, 22))
@@ -93,6 +100,7 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.menubar.addAction(self.menuLibrary.menuAction())
+
         self.tableWidget.itemDoubleClicked.connect(self.bookclick)
         self.tableWidget_2.itemDoubleClicked.connect(self.personclick)
         self.lineEdit.textChanged.connect(self.book_search)
@@ -102,13 +110,20 @@ class Ui_MainWindow(object):
         self.populateperson()
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Library Management Software"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">Search:</span></p></body></html>"))
-        self.pushButton_3.setText(_translate("MainWindow", "Add Book"))
+        self.label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">Book Search:</span></p></body></html>"))
+        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">User Search:</span></p></body></html>"))
+        item = self.tableWidget_2.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "ID"))
+        item = self.tableWidget_2.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Name"))
+        item = self.tableWidget_2.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Username"))
+        item = self.tableWidget_2.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Email"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
         item = self.tableWidget.horizontalHeaderItem(1)
@@ -121,34 +136,13 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "ISBN"))
         item = self.tableWidget.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "Status"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:18pt;\">Search:</span></p></body></html>"))
-        item = self.tableWidget_2.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "ID"))
-        item = self.tableWidget_2.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Name"))
-        item = self.tableWidget_2.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Username"))
-        item = self.tableWidget_2.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Email"))
+        self.pushButton_4.setText(_translate("MainWindow", "Refresh"))
+        self.pushButton_3.setText(_translate("MainWindow", "Add Book"))
+        self.pushButton_5.setText(_translate("MainWindow", "Settings"))
+        self.pushButton_6.setText(_translate("MainWindow", "Add User"))
         self.menuLibrary.setTitle(_translate("MainWindow", "Library"))
 
 
-
-
-
-
-
-
-        
-     
-    # def eventFilter(self, source, event):
-    #     if (event.type() == QtCore.QEvent.MouseButtonDblClick and
-    #         event.buttons() == QtCore.Qt.RightButton and
-    #         source is self.tblBoxes.viewport()):
-    #         item = self.tblBoxes.itemAt(event.pos())
-    #         if item is not None:
-    #             print('dblclick:', item.row(), item.column())
-    #     return super(MainWindow, self).eventFilter(source, event)
 
     def populatebooks(self):
         row = len(self.data_books)
@@ -158,11 +152,7 @@ class Ui_MainWindow(object):
         header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
         header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
         
-        
-
         for i in range(row):
-            #Change later to standerize csv file
-            # self.setFlags(QtCore.Qt.ItemIsEnabled)
             self.tableWidget.setItem(i, 0,QTableWidgetItem(self.data_books[i].id))
             self.tableWidget.setItem(i, 1,QTableWidgetItem(self.data_books[i].title))
             self.tableWidget.setItem(i, 2,QTableWidgetItem(self.data_books[i].author))
@@ -174,17 +164,18 @@ class Ui_MainWindow(object):
     
     def bookclick(self, item):
         print(item.row())
+        # self.object.parse_data()
+        # self.object.parse_books()
+        # self.data = self.object.data
+        # self.data_books = self.object.data_books
+        # self.populatebooks()
 
     def personclick(self, item):
-        # pID = int(item.row())
         pID = int(self.userlist[item.row()].data[0])
-        # import sys
-        # app = QtWidgets.QApplication(sys.argv)
         self.Dialog = QtWidgets.QDialog()
         self.personui = Ui_Dialog(pID, self.data_books, self.data_person, self.data, self.filename,self.due, self.object)
         self.personui.setupUi(self.Dialog)
         self.Dialog.show()
-        # sys.exit(app.exec_())
     
     def book_add(self,item):
         self.Dialog2 = QtWidgets.QDialog()
@@ -193,7 +184,6 @@ class Ui_MainWindow(object):
         self.Dialog2.show()
         
     def user_search(self):
-        
         username = self.lineEdit_2.text()
         if len(username) > 0:
             self.userlist = []
@@ -221,10 +211,12 @@ class Ui_MainWindow(object):
     def book_search(self):
         books =[]
         bookname = self.lineEdit.text()
+
         if len(bookname) > 0:
             for i in self.data_books:
                 if bookname.lower() in i.title.lower():
                     books.append(i)
+
             row = len(books)
             self.tableWidget.setRowCount(row)
             self.tableWidget.setColumnCount(6)
@@ -232,11 +224,7 @@ class Ui_MainWindow(object):
             header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
             header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
             
-            
-
             for i in range(row):
-                #Change later to standerize csv file
-                # self.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.tableWidget.setItem(i, 0,QTableWidgetItem(books[i].id))
                 self.tableWidget.setItem(i, 1,QTableWidgetItem(books[i].title))
                 self.tableWidget.setItem(i, 2,QTableWidgetItem(books[i].author))
@@ -262,6 +250,7 @@ class Ui_MainWindow(object):
             for j in range(4):
                 self.tableWidget_2.setItem(i, j,QTableWidgetItem(self.data_person[i].data[j]))
             
+        
 
 
 
@@ -273,11 +262,7 @@ class Ui_MainWindow(object):
 #         self.pushButton_3.clicked.connect(self.book_add)
 #         self.populatebooks()
 #         self.populateperson()
-        
-
-
-
-
-
+#         self.retranslateUi(MainWindow)
+#         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 

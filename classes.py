@@ -36,10 +36,8 @@ class parse_data():
             line_count = 0
             for line in csv_data:
                 if line_count == 0:
-                    #Things can be implemented later here such as more options for users data. but for now keeping it simple, will change later
                     line_count +=1
                 else:
-                    #As stated above, same thing for now keeping it name and username and ID
                     self.data_person.append(person(line[0],line[1], line[2],line[3]))
         #debug
         # print(len(self.data_person))
@@ -67,7 +65,7 @@ class parse_data():
 
 
 
-#Book Data Class
+
 class book_data():
 
     def __init__(self, data):
@@ -82,11 +80,6 @@ class book_data():
         for i in self.data:
             self.list1.append(i)
     
-
-    # def __str__(self):
-    #     s = ' '.join([str(i) for i in self.data])
-    #     s = s+"\n"
-    #     return s
     def __str__(self):
         s = f"\t\nTitle: {self.title}\n\tISBN: {self.isbn}\n\tAuthor: {self.author}"
         return s

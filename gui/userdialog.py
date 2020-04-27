@@ -91,7 +91,7 @@ class Ui_Dialog(QWidget):
     
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "User Information"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "ID"))
         item = self.tableWidget.horizontalHeaderItem(1)
@@ -126,12 +126,6 @@ class Ui_Dialog(QWidget):
         if len(Bid) > 0:
             if int(Bid) < len(self.data_books):
                 s = takeout(self.object,int(Bid), self.id, self.due,self.filename)
-
-                # self.object.parse_data()
-                # self.data = []
-                # self.tableWidget.setRowCount(0)
-                # # self.data = self.object.data
-                
                 self.populateuser()
                 msg = QMessageBox()
                 msg.setWindowTitle("Library")
@@ -173,13 +167,11 @@ class Ui_Dialog(QWidget):
 
         if retval == 0:
             s = bringback(self.object,bookid,self.id,self.filename)
-            # del self.books[item.row()]
+
             self.populateuser()
             msg = QMessageBox()
             msg.setWindowTitle("Library")
-        
             msg.setText(s)
-            
             x = msg.exec_()
         if retval == 1:
             day, ok  = QInputDialog.getText(self, 'Library', 'Enter the amount of days to extend:')
@@ -191,7 +183,6 @@ class Ui_Dialog(QWidget):
                 msg.setText(s)
                 x = msg.exec_()
 
-       
     def populateuser(self):
         self.tableWidget_2.setRowCount(5)
         self.tableWidget_2.setColumnCount(1)
@@ -200,16 +191,18 @@ class Ui_Dialog(QWidget):
         #IMPLMENT DUES LATER
         for i in range(0,4):
             self.tableWidget_2.setItem(i, 0,QTableWidgetItem(self.data_person[self.id].data[i]))
+
         self.data  = read_data(self.filename)
-        
         self.books = []
         dates = []
         duedate = []
+
         for i in self.data:
             if int(i[1]) == self.id:
                 self.books.append(i[0])
                 dates.append(i[2])
                 duedate.append(i[3])
+
         if len(self.books) > 0:
             self.tableWidget.setRowCount(len(self.books))
             self.tableWidget.setColumnCount(5)
@@ -219,15 +212,13 @@ class Ui_Dialog(QWidget):
             header1.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
             header1.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeToContents)
             header1.setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeToContents)
+
             for i in range(len(self.books)):
                 self.tableWidget.setItem(i, 0,QTableWidgetItem(self.books[i]))
                 self.tableWidget.setItem(i, 1,QTableWidgetItem(self.data_books[int(self.books[i])].title))
                 self.tableWidget.setItem(i, 2,QTableWidgetItem(self.data_books[int(self.books[i])].isbn))
                 self.tableWidget.setItem(i, 3,QTableWidgetItem(dates[i]))
                 self.tableWidget.setItem(i,4,QTableWidgetItem(duedate[i]))
+
         elif len(self.books) == 0:
             self.tableWidget.setRowCount(0)
-        
-        # print(self.books)
-
-

@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime, timedelta
 
-def read_data(filename):
+def read_data(filename) -> list:
     data =[]
     with open(filename) as csv_file:
         csv_data = csv.reader(csv_file, delimiter=',')
@@ -9,22 +9,7 @@ def read_data(filename):
             data.append(line)
     return data
 
-# def takeout(object, id, pid, due, filename):
-#     data = read_data(filename)
-#     flag = True
-#     for i in data:
-#         if int(i[0]) == id:
-#             print(f"ERROR: The following book is already signed out by {object.data_person[int(i[1])].name} on the data {i[2]}")
-#             flag = False
-#             break
-#     if len(data) == 0 or flag == True:
-#         datenow = datetime.now().date()
-#         duedate = datenow + timedelta(days=due)
-#         with open(filename, mode='a+') as csv_file:
-#             csv_data = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-#             csv_data.writerow([id,pid,str(datenow), str(duedate)])
-#         print(f"\n{object.data_person[pid].name} has taken out the following book:\n{object.data_books[id]}")
-def takeout(object, id, pid, due, filename):
+def takeout(object, id, pid, due, filename) -> str:
     data = read_data(filename)
     flag = True
     s = " "
@@ -43,7 +28,7 @@ def takeout(object, id, pid, due, filename):
         log(s)
         return s
 
-def bringback(object,id,pid,filename):
+def bringback(object,id,pid,filename) -> str:
     data = read_data(filename)
     flag = True
     for i in data:
@@ -66,7 +51,7 @@ def bringback(object,id,pid,filename):
         log(s)
         return s
 
-def extend(object,id,pid, day,filename):
+def extend(object,id,pid, day,filename) -> str:
     data = read_data(filename)
     datenow = datetime.now().date()
     duedate = datenow + timedelta(days=day)
@@ -138,7 +123,7 @@ def username_search(object, username, filename):
     else:
         print("User not found")  
 
-def book_search(object, bookname):
+def book_search(object, bookname) -> list:
     books =[]
     for i in object.data_books:
         if bookname.lower() in i.title.lower():
@@ -151,6 +136,7 @@ def log(logs):
     f.write(f"\nOn {datenow} the following took place:\n\t{logs}\n")
     f.close()
 
+# Function works, just awaits implementation 
 def sendemail(object,Remail,Semail,EmailPass, userid, bookid, date):
     import smtplib, ssl
     from email.message import EmailMessage

@@ -18,21 +18,57 @@
     <item row="0" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Search:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Book Search:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
      <widget class="QLineEdit" name="lineEdit"/>
     </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="pushButton_3">
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Add Book</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;User Search:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0" colspan="3">
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="lineEdit_2"/>
+    </item>
+    <item row="3" column="0" colspan="5">
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Username</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Email</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="5">
      <widget class="QTableWidget" name="tableWidget">
       <property name="mouseTracking">
        <bool>true</bool>
@@ -81,47 +117,32 @@
       </column>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_2">
+    <item row="0" column="4">
+     <widget class="QPushButton" name="pushButton_4">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Search:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>Refresh</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_2"/>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Add Book</string>
+      </property>
+     </widget>
     </item>
-    <item row="3" column="0" colspan="3">
-     <widget class="QTableWidget" name="tableWidget_2">
-      <property name="mouseTracking">
-       <bool>true</bool>
+    <item row="2" column="4">
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="text">
+       <string>Settings</string>
       </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="text">
+       <string>Add User</string>
       </property>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>ID</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Username</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Email</string>
-       </property>
-      </column>
      </widget>
     </item>
    </layout>
