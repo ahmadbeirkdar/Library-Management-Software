@@ -1,5 +1,9 @@
 
-# Library Management Software
+# Library  Software  In Python
+
+This Project is now on hold, I have made a mistake and wrote this in python. I should not have. 
+
+Follow this link for the new project in C++ being worked on https://github.com/ahmadbeirkdar/Library-Management-Software
 
 Current Features:
 
